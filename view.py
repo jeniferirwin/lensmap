@@ -37,13 +37,23 @@ class view:
         might also be overkill to give them their own constants.
         """
         fixed = []
+        road_last_line = False
         for line in self.lines:
+            if road_last_line is True and re.match('^ *[\/+|-]+', line):
+                line = re.sub('^ *\+', '1', line)
+                line = re.sub('^ *\-', '2', line)
+                line = re.sub('^ *\|', '3', line)
+                line = re.sub('^ *\\\\', '4', line)
+                line = re.sub('^ *\/', '5', line)
+                road_last_line = False
             line = line.replace('\x1b[1;37m+',"1")
             line = line.replace('\x1b[1;37m-',"2")
             line = line.replace('\x1b[1;37m|',"3")
             line = line.replace('\x1b[1;37m\\',"4")
             line = line.replace('\x1b[1;37m/',"5")
             match = re.search('([1-5])([\/+|-])',line)
+            if match is not None:
+                road_last_line = True
             while match is not None:
                 line = re.sub('([1-5])\+', '\g<1>1', line)
                 line = re.sub('([1-5])\-', '\g<1>2', line)
