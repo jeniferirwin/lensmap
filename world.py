@@ -63,9 +63,12 @@ class world:
             if coords_searching is True:
                 coord_match = re.search(RE_COORDS,line)
                 if coord_match is not None:
-                    current_view = view(coord_match.group(1), coord_match.group(2))
-                    key_searching = True
-                    coords_searching = False
+                    x = coord_match.group(1)
+                    y = coord_match.group(2)
+                    if not self.view_exists(x, y):
+                        current_view = view(x, y)
+                        key_searching = True
+                        coords_searching = False
                 continue
 
             if key_searching is True:
@@ -100,21 +103,34 @@ class world:
     def plot_points(self):
         """This is where the magic happens. Take all of our views and
         plot them onto the huge 2D array that makes up the world map.
+
+        I don't know why flipping view.lines upside down works, but
+        it does.
         """
         for view in self.views:
+            view.lines.reverse()
             for entry in VISIBLE_POINTS:
                 row = entry[0]
                 col = entry[1]
-                remap_row = (7 - row) + view.y
-                remap_col = (7 + col) - view.x
-                self.plot[remap_row][remap_col] = view.lines[row][col]
-            for row in view.lines:
-                newline = ''
-                for col in row:
-                    newline += col
-                print(newline)
+                remap_row = -(row + view.y) + 7
+                remap_col = (col + view.x) - 3
+                if self.is_valid_point(remap_row, remap_col):
+                    self.plot[remap_row][remap_col] = view.lines[row][col]
             
     
+    def is_valid_point(self, row, col):
+        if col >= len(self.plot[0]): return False
+        if col < 0: return False
+        if row >= len(self.plot): return False
+        if row <= -len(self.plot): return False
+        return True
+        
+    def view_exists(self, x, y):
+        for entry in self.views:
+            if x == entry.x and y == entry.y:
+                return True
+        return False
+
     def printmap(self):
         maplines = []
         for row in self.plot:
@@ -122,7 +138,7 @@ class world:
             for col in row:
                 newline += col
             maplines.append(newline + '\n')
-        maplines.reverse()
         outfile = open(OUTFILE, "w")
         outfile.writelines(maplines)
         outfile.close()
+        print(len(self.plot))
