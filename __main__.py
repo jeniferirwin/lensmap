@@ -18,6 +18,7 @@ def main() -> int:
     map = world(WORLD_ROWS, WORLD_COLS)
     map.log_to_views(loglines)
     map.tidy_views()
+    map.plot_points()
     map.printmap()
     return(0)
 

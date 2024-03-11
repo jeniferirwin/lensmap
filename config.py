@@ -7,8 +7,11 @@ VIEW_LINES = 15
 # Row and column dimensions of the world. The way that I
 # derived these values is discussed in README.md.
 
-WORLD_ROWS = 1299
-WORLD_COLS = 1995
+#WORLD_ROWS = 1299
+#WORLD_COLS = 1995
+
+WORLD_ROWS = 100  # shrunk for ease of testing
+WORLD_COLS = 100
 
 # The directory that logfiles are read from. You probably
 # shouldn't set this to your normal everyday logfile directory.
@@ -21,7 +24,7 @@ WORLD_COLS = 1995
 # accurate coordinates, and possibly even extra safeguards like
 # being chann deaf.
 
-LOGDIR = "./logfiles/"
+LOGDIR = "./smalltest/"
 
 # Output file for the final map.
 

@@ -97,6 +97,24 @@ class world:
             view.replace_roads()
             view.remove_colors()
     
+    def plot_points(self):
+        """This is where the magic happens. Take all of our views and
+        plot them onto the huge 2D array that makes up the world map.
+        """
+        for view in self.views:
+            for entry in VISIBLE_POINTS:
+                row = entry[0]
+                col = entry[1]
+                remap_row = (7 - row) + view.y
+                remap_col = (7 + col) - view.x
+                self.plot[remap_row][remap_col] = view.lines[row][col]
+            for row in view.lines:
+                newline = ''
+                for col in row:
+                    newline += col
+                print(newline)
+            
+    
     def printmap(self):
         maplines = []
         for row in self.plot:
@@ -104,6 +122,7 @@ class world:
             for col in row:
                 newline += col
             maplines.append(newline + '\n')
+        maplines.reverse()
         outfile = open(OUTFILE, "w")
         outfile.writelines(maplines)
         outfile.close()

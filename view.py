@@ -4,8 +4,8 @@ import re
 class view:
     def __init__(self, x, y):
         self.lines = []
-        self.x = x
-        self.y = y
+        self.x = int(x)
+        self.y = int(y)
 
     def remove_colors(self):
         """Strip out all colors. Only run this AFTER running the
@@ -14,8 +14,8 @@ class view:
         """
         colorless = []
         for line in self.lines:
-            line = line.replace('\x1b[0m','')
-            line = line.replace('\x1b[\d;3\dm','')
+            line = re.sub('\x1b\[0m','',line)
+            line = re.sub('\x1b\[\d;3\dm','',line)
             colorless.append(line)
         self.lines = colorless
     
