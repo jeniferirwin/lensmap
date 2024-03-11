@@ -252,12 +252,11 @@ of things that get stripped out of each string:
 * ANSI colors
 * the key/legend
 * extra spaces
-* newlines
 
-This leaves us with nice, trimmed lines that don't have any weird
-escape codes in them. Removing the key probably isn't strictly
-necessary, but I decided to leave that functionality in in case someone
-makes a fork that requires it.
+This leaves us with nice, clean lines that don't have any weird escape
+codes in them. Removing the key probably isn't strictly necessary, but
+I decided to leave that functionality in in case someone makes a fork
+that requires it.
 
 ### Plotting
 
