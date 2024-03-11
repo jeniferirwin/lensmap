@@ -17,6 +17,8 @@ RE_RESET    = '\x1b[0m'
 EMPTY       = ''
 NEWLINE     = '\n'
 
+KEY_STRING_ANSI = '\x1b\[0m-------\x1b\[1;33mKEY\x1b\[0m-------'
+KEY_STRING      = '-------KEY-------'
 
 LEGEND_STRINGS = [
     '\x1b[0m-------\x1b[1;33mKEY\x1b[0m-------\n',
