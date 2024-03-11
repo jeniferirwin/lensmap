@@ -1,6 +1,6 @@
-To be picked up by the program, logs need to be at least 15 lines long
-and have at least one recognizable COORDINATE/View pair, as detailed in
-the main README.md file.
+Put logfiles of atlas sessions here. To be used by the program, logs
+must have at least one recognizable Coordinate/View pair, as detailed
+in the main README.md.
 
 You can make as many different logfiles as you want. Catching the same
 View in two different logfiles is fine, but if you have mismatched
