@@ -96,7 +96,6 @@ class world:
             view.remove_legend()
             view.replace_roads()
             view.remove_colors()
-            view.remove_newlines()
     
     def printmap(self):
         maplines = []
@@ -104,7 +103,7 @@ class world:
             newline = ''
             for col in row:
                 newline += col
-            maplines.append(newline)
+            maplines.append(newline + '\n')
         outfile = open(OUTFILE, "w")
         outfile.writelines(maplines)
         outfile.close()

@@ -28,15 +28,6 @@ class view:
             keyless.append(line)
         self.lines = keyless
     
-    def remove_newlines(self):
-        """Tighten up the lines by removing excess spaces and newlines.
-        """
-        trimmed = []
-        for line in self.lines:
-            line = re.sub(' *\n','',line)
-            trimmed.append(line)
-        self.lines = trimmed
-
     def replace_roads(self):
         """Replace all roads with numbers 1-5. See README.md for why
         we're doing this, but the gist of it is so that we can tell
