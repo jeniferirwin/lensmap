@@ -1,3 +1,11 @@
+# NOTICE
+
+There are things mentioned in this README that do not happen in the
+code just yet. I have most of the pieces semi-working, but the program
+is still in an unusable state. I wanted to make this README before
+completing it just to keep track of my own guidelines and requirements
+for the project.
+
 # Lensmoor Wilderness Map Generator
 
 The goal of this project is to create a system that players of Lensmoor
