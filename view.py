@@ -40,11 +40,11 @@ class view:
         road_last_line = False
         for line in self.lines:
             if road_last_line is True and re.match('^ *[\/+|-]+', line):
-                line = re.sub('^ *\+', '1', line)
-                line = re.sub('^ *\-', '2', line)
-                line = re.sub('^ *\|', '3', line)
-                line = re.sub('^ *\\\\', '4', line)
-                line = re.sub('^ *\/', '5', line)
+                line = re.sub('^( *)\+', '\g<1>1', line)
+                line = re.sub('^( *)\-', '\g<1>2', line)
+                line = re.sub('^( *)\|', '\g<1>3', line)
+                line = re.sub('^( *)\\\\', '\g<1>4', line)
+                line = re.sub('^( *)\/', '\g<1>5', line)
                 road_last_line = False
             line = line.replace('\x1b[1;37m+',"1")
             line = line.replace('\x1b[1;37m-',"2")
