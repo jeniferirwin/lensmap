@@ -10,6 +10,12 @@ class world:
         self.cols = cols
         self.views = []
         self.plot = [['o']*self.cols for i in range(self.rows)]
+        for i in range(9):
+            for j in range(self.cols):
+                self.plot[i][j] = 'I'
+        for i in range(1292, 1299):
+            for j in range(self.cols):
+                self.plot[i][j] = 'I'
 
     def log_to_views(self, log):
         """Process input text into a series of views. To process the
@@ -108,12 +114,13 @@ class world:
         it does.
         """
         for view in self.views:
+            if view.y >= 1295 or view.y <= 5 or view.x < 5 or view.x > 1995: continue
             view.lines.reverse()
             for entry in VISIBLE_POINTS:
                 row = entry[0]
                 col = entry[1]
-                remap_row = -(row + view.y) + 7
-                remap_col = (col + view.x) - 3
+                remap_row = -(row + view.y) + 6
+                remap_col = (col + view.x) - 8
                 if self.is_valid_point(remap_row, remap_col):
                     self.plot[remap_row][remap_col] = view.lines[row][col]
             
