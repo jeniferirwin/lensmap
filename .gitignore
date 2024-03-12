@@ -1,5 +1,4 @@
 __pycache__/*
 logfiles/*
 !logfiles/readme.txt
-wilderness.txt
 .vscode/*
