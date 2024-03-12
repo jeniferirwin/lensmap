@@ -9,7 +9,7 @@ class world:
         self.rows = rows
         self.cols = cols
         self.views = []
-        self.plot = [[' ']*self.cols for i in range(self.rows)]
+        self.plot = [['o']*self.cols for i in range(self.rows)]
 
     def log_to_views(self, log):
         """Process input text into a series of views. To process the
