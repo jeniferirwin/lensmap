@@ -15,10 +15,15 @@ def main() -> int:
                 input_lines = logfile.readlines()
                 loglines += input_lines
 
+    print("Initializing world...")
     map = world(WORLD_ROWS, WORLD_COLS)
+    print("Converting log to views...")
     map.log_to_views(loglines)
+    print("Tidying views...")
     map.tidy_views()
+    print("Plotting the points...")
     map.plot_points()
+    print("Dumping the map...")
     map.printmap()
     return(0)
 
