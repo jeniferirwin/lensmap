@@ -6,7 +6,7 @@ body
 }
 
 .tundra     { color: #00EECC; }
-.forest     { color: #00FF00; }
+.forest     { color: #00AA00; }
 .desert     { color: #FFCC00; }
 .plains     { color: #00FF00; }
 .water      { color: #00AAAA; }
@@ -16,3 +16,6 @@ body
 .deepwater  { color: #0000AA; }
 .river      { color: #009999; }
 .road       { color: #FFFFFF; }
+.swamp      { color: #007700; }
+.city       { color: #FFFF00; }
+.vehicle    { color: #FF0000; }
