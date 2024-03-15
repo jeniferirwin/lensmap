@@ -1,0 +1,18 @@
+body
+{
+    background-color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: nowrap;
+}
+
+.tundra     { color: #00EECC; }
+.forest     { color: #00FF00; }
+.desert     { color: #FFCC00; }
+.plains     { color: #00FF00; }
+.water      { color: #00AAAA; }
+.ocean      { color: #000088; }
+.mountains  { color: #BB0000; }
+.hills      { color: #AA0000; }
+.deepwater  { color: #0000AA; }
+.river      { color: #009999; }
+.road       { color: #FFFFFF; }
