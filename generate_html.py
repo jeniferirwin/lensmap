@@ -33,21 +33,24 @@ for line in lines:
     line = re.sub('4', 'D', line)
     line = re.sub('5', 'E', line)
 
-    # Convert all desert tiles into HTML codes right off the
-    # bat. Since HTML codes themselves have a semicolon in
-    # them, we need to do this replacement early - but not
-    # before the above. Since there's a 5 in this HTML
-    # character code, we need to do the above subs first,
-    # otherwise we'd be replacing the 5 here with E.
+    # Convert all desert tiles into HTML codes right off the bat. Since
+    # HTML codes themselves have a semicolon in them, we need to do
+    # this replacement early - but not before the above. Since there's
+    # a 5 in this HTML character code, we need to do the above subs
+    # first, otherwise we'd be replacing the 5 here with E.
     #
-    # Also convert all forest tiles into HTML codes.
-    # Since we've already put some extra pound signs
-    # into the document, we need to make sure we don't
-    # catch any instances that aren't preceded with
-    # an ampersand.
+    # Also convert all forest tiles into HTML codes. Since we've
+    # already put some extra pound signs into the document, we
+    # need to make sure we don't catch any instances that aren't
+    # preceded with an ampersand.
+    #
+    # Finally, convert all swamp tiles into HTML codes as well.
     
     line = re.sub(';', '&#59;', line)
     line = re.sub('([^&])#', '\g<1>&#35;', line)
+    line = re.sub('([^&])#', '\g<1>&#35;', line)
+    line = re.sub('"', '&#35;', line)
+    line = re.sub('\*', '&#42;', line)
 
     # Temporarily turn all backslashes into percent signs, to
     # prevent escape issues from happening. Later we'll turn
@@ -101,6 +104,9 @@ for line in lines:
     line = re.sub('((&#111;)+)','<span class="ocean">\g<1></span>',line)
     line = re.sub('(\.+)','<span class="plains">\g<1></span>',line)
     line = re.sub('((&#48;)+)','<span class="deepwater">\g<1></span>',line)
+    line = re.sub('((&#35;)+)','<span class="swamp">\g<1></span>',line)
+    line = re.sub('((&#42;)+)','<span class="city">\g<1></span>',line)
+    line = re.sub('(V+)','<span class="vehicle">\g<1></span>',line)
 
     line = re.sub('\n', '<br>\n',line)
     html.append(line)
