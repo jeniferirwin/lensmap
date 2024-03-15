@@ -49,7 +49,7 @@ for line in lines:
     line = re.sub(';', '&#59;', line)
     line = re.sub('([^&])#', '\g<1>&#35;', line)
     line = re.sub('([^&])#', '\g<1>&#35;', line)
-    line = re.sub('"', '&#35;', line)
+    line = re.sub('"', '&#34;', line)
     line = re.sub('\*', '&#42;', line)
 
     # Temporarily turn all backslashes into percent signs, to
@@ -104,7 +104,7 @@ for line in lines:
     line = re.sub('((&#111;)+)','<span class="ocean">\g<1></span>',line)
     line = re.sub('(\.+)','<span class="plains">\g<1></span>',line)
     line = re.sub('((&#48;)+)','<span class="deepwater">\g<1></span>',line)
-    line = re.sub('((&#35;)+)','<span class="swamp">\g<1></span>',line)
+    line = re.sub('((&#34;)+)','<span class="swamp">\g<1></span>',line)
     line = re.sub('((&#42;)+)','<span class="city">\g<1></span>',line)
     line = re.sub('(V+)','<span class="vehicle">\g<1></span>',line)
 
@@ -115,6 +115,6 @@ for line in lines:
     html.append(line)
 html.append("</body></html>")
 
-outfile = open("wilderness.html", "w")
+outfile = open("index.html", "w")
 outfile.writelines(html)
 outfile.close()
