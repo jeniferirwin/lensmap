@@ -230,18 +230,21 @@ to be able to make use of this program.
 
 ## Processing the data
 
-Once you've mapped some rooms, you can run the program with the
-logfile as a command line argument. Right now, the code is such that
-if you want a map of the entire world, you'd have to use the atlas
-to look at ALL of it in a single session. It's more of a proof of
-concept right now - eventually, I'll make it so that it can work with
-multiple logfiles collected in a directory, so the data can be gathered
-over time.
+Once you've mapped some rooms, you can put the logs in the 'logfiles'
+directory and run `__main__.py` to process them. Check out `config.py`
+to see what parameters you can change.
 
-The program reads in all the lines in the file, then begins splitting
-them up into Views. Each View object is comprised of its coordinates
-and the 15 lines that make up the ASCII automap. The coordinates of
-the View represent its center, where you see the player 'X'.
+One of these parameters is the directory that logfiles are read from.
+I do not recommend pointing this directly at your default Lensmoor
+logs folder, as this could potentially GREATLY increase processing
+time and also lead to inaccuracies. Instead, have a folder of 'vetted'
+atlas sessions and point the generator at that.
+
+The program reads in all the lines in all of the files in the given
+directory, then begins splitting them up into Views. Each View object
+is comprised of its coordinates and the 15 lines that make up the
+ASCII automap. The coordinates of the View represent its center,
+where you see the player 'X'.
 
 ### Tidying
 
@@ -254,9 +257,7 @@ of things that get stripped out of each string:
 * extra spaces
 
 This leaves us with nice, clean lines that don't have any weird escape
-codes in them. Removing the key probably isn't strictly necessary, but
-I decided to leave that functionality in in case someone makes a fork
-that requires it.
+codes in them.
 
 ### Plotting
 
@@ -277,5 +278,4 @@ result gets printed out.
 
 The result is a 1299-line, 1995-column text file that is a 1:1
 representation of the Lensmoor wilderness. Areas that were not
-logged are left as empty space. The empty space is there to
-preserve the structure of things that *did* get recorded.
+logged will be filled in with 'ocean' tiles.
