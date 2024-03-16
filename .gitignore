@@ -2,3 +2,4 @@ __pycache__/*
 logfiles/*
 !logfiles/readme.txt
 .vscode/*
+*.pyc
