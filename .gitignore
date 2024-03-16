@@ -3,3 +3,4 @@ logfiles/*
 !logfiles/readme.txt
 .vscode/*
 *.pyc
+main
