@@ -12,17 +12,34 @@ const std::string LOGDIR = "../logfiles/";
 
 char map[WORLD_ROWS][WORLD_COLS] = {};
 
-int get_one_logfile(boost::filesystem::path file) {
-    printf("%s\n", file.filename().c_str());
-    return 0;
+std::string get_one_logfile(boost::filesystem::path logfile) {
+    const char * fname = logfile.c_str();
+    printf("Reading %s...\n", fname);
+    std::ifstream fh(logfile, std::ios::binary | std::ios::ate);
+    const size_t sz = fh.tellg();
+    if (sz < 0) {
+        printf("File size of %s is less than 0, skipping...",fname);
+    }
+    fh.seekg(0, std::ios::beg);
+    std::string str = std::string(sz, '\0');
+    if (fh.is_open())
+        fh.read(&str[0],sz);
+    fh.close();
+    return str;
 }
 
 int aggregate_logfiles() {
     path p (LOGDIR);
     try {
         if (exists(p)) {
+            int total;
             for (directory_entry& x : directory_iterator(p))
-                get_one_logfile(x.path());
+                total += x.path().size();
+
+            std::string buf;
+            for (directory_entry& x : directory_iterator(p)) {
+                buf.append(get_one_logfile(x.path()));
+            }
         }
     }
     
@@ -44,5 +61,4 @@ void fill_with_oceans() {
 int main() {
     aggregate_logfiles();
     fill_with_oceans();
-    printf("%c",map[200][3]);
 }
