@@ -30,24 +30,19 @@ std::string get_one_logfile(boost::filesystem::path logfile) {
 
 int aggregate_logfiles() {
     path p (LOGDIR);
-    try {
-        if (exists(p)) {
-            int total;
-            for (directory_entry& x : directory_iterator(p))
-                total += x.path().size();
+    if (exists(p)) {
+        int total;
+        for (directory_entry& x : directory_iterator(p))
+            total += x.path().size();
 
-            std::string buf;
-            for (directory_entry& x : directory_iterator(p)) {
-                buf.append(get_one_logfile(x.path()));
-            }
+        std::string buf;
+        for (directory_entry& x : directory_iterator(p)) {
+            buf.append(get_one_logfile(x.path()));
         }
+        printf("Read in %i bytes (%i KB, %i MB)\n",buf.size(), buf.size() / 1024, buf.size() / 1024 / 1024);
+        return 0;
     }
-    
-    catch (const filesystem_error& err) {
-        std::cout << err.what() << '\n';
-    }
-
-    return 0;
+    return 1;
 }
 
 void fill_with_oceans() {
