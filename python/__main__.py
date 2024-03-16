@@ -24,7 +24,7 @@ def main() -> int:
     print("Plotting the points...")
     map.plot_points()
     print("Dumping the map...")
-    map.printmap()
+    #map.printmap()
     return(0)
 
 if __name__ == '__main__':

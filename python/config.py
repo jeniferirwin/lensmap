@@ -24,11 +24,11 @@ WORLD_COLS = 1995
 # accurate coordinates, and possibly even extra safeguards like
 # being chann deaf.
 
-LOGDIR = "./logfiles/"
+LOGDIR = "../logfiles/"
 
 # Output file for the final map.
 
-OUTFILE = "./wilderness.txt"
+OUTFILE = "../wilderness.txt"
 
 # I know this is super gross, but I couldn't figure out how to describe
 # the pattern of visible points more elegantly - since the shape of the
