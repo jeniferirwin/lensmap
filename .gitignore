@@ -4,3 +4,4 @@ logfiles/*
 .vscode/*
 *.pyc
 main
+*.o
