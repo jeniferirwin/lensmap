@@ -1,9 +1,11 @@
 #include <iostream>
 #include <boost/filesystem.hpp>
-#include "config.cpp"
+#include "logfiles.h"
+#include "const.h"
 using namespace boost::filesystem;
 
-static std::string aggregate_logfiles() {
+
+std::string aggregate_logfiles() {
     path p (LOGDIR);
     if (exists(p)) {
         int total;
@@ -14,23 +16,23 @@ static std::string aggregate_logfiles() {
         for (directory_entry& x : directory_iterator(p)) {
             buf.append(get_one_logfile(x.path()));
         }
-        printf("Read in %i bytes (%i KB, %i MB)\n",buf.size(), buf.size() / 1024, buf.size() / 1024 / 1024);
+        printf("Read in %lu bytes (%lu KB, %lu MB)\n",buf.size(), buf.size() / 1024, buf.size() / 1024 / 1024);
         return buf;
     }
+    return "";
 }
 
-static std::string get_one_logfile(boost::filesystem::path logfile) {
+std::string get_one_logfile(path logfile) {
     const char * fname = logfile.c_str();
     printf("Reading %s...\n", fname);
-    std::ifstream fh(logfile, std::ios::binary | std::ios::ate);
+    std::ifstream fh(fname, std::ios::binary | std::ios::ate);
     const size_t sz = fh.tellg();
-    if (sz < 0) {
+    if (sz <= 0) {
         printf("File size of %s is less than 0, skipping...",fname);
+        return "";
     }
     fh.seekg(0, std::ios::beg);
     std::string str = std::string(sz, '\0');
-    if (fh.is_open())
-        fh.read(&str[0],sz);
-    fh.close();
+    fh.read(&str[0], sz);
     return str;
 }

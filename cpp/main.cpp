@@ -3,9 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <boost/filesystem.hpp>
-#include "view.cpp"
-#include "logfiles.cpp"
-#include "world.cpp"
+#include "logfiles.h"
+#include "world.h"
 
 int main() {
     std::string log = aggregate_logfiles();

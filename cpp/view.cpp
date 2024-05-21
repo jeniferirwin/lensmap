@@ -1,8 +1,3 @@
 #include <string>
-#include "config.cpp"
-
-class View {
-    public:
-        int x, y;
-        std::string lines[15];
-};
+#include "view.h"
+#include "const.h"
