@@ -1,14 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <boost/filesystem.hpp>
 #include "logfiles.h"
 #include "world.h"
 
-int main() {
-    std::string log = aggregate_logfiles();
-    if (log.empty()) { return 1; }
+int main(void) {
+    std::cout << "Hello, World!\n" << std::endl;
+    const char * log = "";
+    if (log == "") { return 1; }
     World world = World();
     world.fill_with_oceans();
     world.initialize_views();
